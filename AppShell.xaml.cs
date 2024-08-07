@@ -30,7 +30,8 @@ namespace LearningMAUI
 
         private async void SignoutMenuItem_Clicked(object sender, EventArgs e)
         {
-            await Shell.Current.DisplayAlert("Alert", "Signout Button Clicked","Ok");
+            /*await Shell.Current.DisplayAlert("Alert", "Signout Button Clicked","Ok");*/
+            await Shell.Current.GoToAsync($"//{nameof(WelcomePage)}");
         }
     }
 }

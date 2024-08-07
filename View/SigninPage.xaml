@@ -4,10 +4,22 @@
              x:Class="LearningMAUI.View.SigninPage"
              Title="SigninPage"
              Shell.FlyoutBehavior="Disabled">
-    <VerticalStackLayout>
+    
+      <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
         <Label 
             Text="Sign in Page"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+        <Entry x:Name="email"
+               Placeholder="Enter Email"
+               TextChanged="Email_TextChanged"
+               ClearButtonVisibility="WhileEditing"/>
+        <Entry x:Name="password"
+               Placeholder="Enter Password"
+               TextChanged="Password_TextChanged"
+               IsPassword="True"
+               ClearButtonVisibility="WhileEditing"/>
+        <Button Text="Go to Home" Clicked="SigninButton_Clicked" />
     </VerticalStackLayout>
+    
 </ContentPage>
