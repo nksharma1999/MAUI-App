@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="LearningMAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:LearningMAUI"
+    xmlns:pages="clr-namespace:LearningMAUI.View"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    Shell.FlyoutBehavior="Flyout"
+    Title="MAUI Application">
+
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="red" />
+    </Shell.Behaviors>
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:WelcomePage}"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"/>
+    <TabBar FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Icon="home.png"
+            Route="HomePage" 
+            Shell.NavBarIsVisible="False"/>
+        <ShellContent
+            Title="Cart"
+            ContentTemplate="{DataTemplate pages:CartPage}"
+            Icon="home.png"
+            Route="CartPage" />
+        <ShellContent
+            Title="Profile"
+            ContentTemplate="{DataTemplate pages:ProfilePage}"
+            Icon="home.png"
+            Route="ProfilePage" />
+    </TabBar>
+
+    <MenuItem IconImageSource="home.png" Text="Signout" Clicked="SignoutMenuItem_Clicked"></MenuItem>
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <HorizontalStackLayout  Spacing="10" Padding="10">
+                <Image HeightRequest="20"
+                    Source="{Binding FlyoutIcon}"
+                    WidthRequest="20" />
+                <Label Text="{Binding Title}" TextColor="Red" />
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <HorizontalStackLayout  Spacing="10" Padding="10">
+                <Image HeightRequest="20"
+                    Source="{Binding Icon}"
+                    WidthRequest="20" />
+                <Label Text="{Binding Text}" TextColor="Red" />
+            </HorizontalStackLayout>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+    <Shell.FlyoutHeader>
+        <Border BackgroundColor="red"
+                Padding="10"
+                StrokeThickness="0">
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Image Source="dotnet_bot.png" HeightRequest="150" WidthRequest="150" HorizontalOptions="Center"/>
+                <Label Text="MAUI Application" HorizontalOptions="Center" FontSize="18" />
+            </VerticalStackLayout>
+        </Border>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <Border BackgroundColor="red" StrokeThickness="0" Padding="10" >
+            <Label Text="@2024 Nandkishor Sharma" TextColor="White" HorizontalOptions="Center"/>
+        </Border>
+    </Shell.FlyoutFooter>
+</Shell>
