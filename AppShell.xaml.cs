@@ -1,13 +1,15 @@
 ﻿using LearningMAUI.View;
-
+using LearningMAUI.Services;
 namespace LearningMAUI
 {
     public partial class AppShell : Shell
     {
-        public AppShell()
+        private readonly AuthService _authService;
+        public AppShell(AuthService authService)
         {
             InitializeComponent();
             RefisterRoutes();
+            _authService = authService;
            /* Routing.RegisterRoute(nameof(SigninPage),typeof(SigninPage));
             Routing.RegisterRoute(nameof(SignupPage),typeof(SignupPage));*/ 
         }
@@ -31,7 +33,10 @@ namespace LearningMAUI
         private async void SignoutMenuItem_Clicked(object sender, EventArgs e)
         {
             /*await Shell.Current.DisplayAlert("Alert", "Signout Button Clicked","Ok");*/
+            //await Shell.Current.GoToAsync($"//{nameof(WelcomePage)}");
+            _authService.Signout();
             await Shell.Current.GoToAsync($"//{nameof(WelcomePage)}");
+
         }
     }
 }

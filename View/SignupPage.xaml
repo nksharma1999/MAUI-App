@@ -2,12 +2,32 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearningMAUI.View.SignupPage"
+             xmlns:mv="clr-namespace:LearningMAUI.ViewModel"
              Title="SignupPage"
-             Shell.FlyoutBehavior="Disabled">
-    <VerticalStackLayout>
-        <Label 
-            Text="Sign Up Page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Shell.FlyoutBehavior="Disabled"
+             x:DataType="mv:AuthViewModel">
+
+  
+    <Grid>
+        <VerticalStackLayout VerticalOptions="Center" Spacing="10" Padding="20">
+            <Image Source="dotnet_bot.png" HeightRequest="150" WidthRequest="150" Aspect="AspectFit" />
+            <Entry Text="{Binding Name}"
+                   Placeholder="Enter Name"/>
+            <Entry Text="{Binding Email}" Keyboard="Email"
+                   Placeholder="Enter Email"/>
+            <Entry Text="{Binding Password}" IsPassword="True"
+                   Placeholder="Enter Password"/>
+            <Editor Text="{Binding Address}" MaxLength="150" AutoSize="TextChanges"
+                   Placeholder="Enter Address"/>
+
+            <Label Text="Existing user? Signin" FontSize="15" FontAttributes="Bold">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Button Text="Signup" Command="{Binding SignupCommand}" IsEnabled="{Binding CanSinup}" />
+
+        </VerticalStackLayout>
+        <ActivityIndicator HorizontalOptions="Center" VerticalOptions="Center" Color="red" IsRunning="{Binding IsBusy}"/>
+    </Grid>
 </ContentPage>

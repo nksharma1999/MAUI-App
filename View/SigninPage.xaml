@@ -2,24 +2,25 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LearningMAUI.View.SigninPage"
+             xmlns:mv="clr-namespace:LearningMAUI.ViewModel"
              Title="SigninPage"
-             Shell.FlyoutBehavior="Disabled">
+             Shell.FlyoutBehavior="Disabled"
+             x:DataType="mv:AuthViewModel">
     
       <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="10">
         <Label 
             Text="Sign in Page"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Entry x:Name="email"
+        <Entry Text="{Binding Email}"
                Placeholder="Enter Email"
-               TextChanged="Email_TextChanged"
                ClearButtonVisibility="WhileEditing"/>
-        <Entry x:Name="password"
+          
+        <Entry Text="{Binding Password}"
                Placeholder="Enter Password"
-               TextChanged="Password_TextChanged"
                IsPassword="True"
                ClearButtonVisibility="WhileEditing"/>
-        <Button Text="Go to Home" Clicked="SigninButton_Clicked" />
+        <Button Text="Signin" IsEnabled="{Binding CanSignin}" Command="{Binding SigninCommand}" />
     </VerticalStackLayout>
     
 </ContentPage>
